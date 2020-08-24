@@ -3,11 +3,10 @@ import time
 import random
 
 class cell:
-    def __init__(self,screen,x1,y1,x2,y2,RowNum,ColumnNum):
+    def __init__(self,screen,x1,y1,cellSize,RowNum,ColumnNum):
         self.x1=x1
         self.y1=y1
-        self.x2=x2
-        self.y2=y2                                          #x1,x2,y1,y2 Are the points used Draw A Rectriangle 
+        self.cellSize=cellSize                                         #x1,x2,y1,y2 Are the points used Draw A Rectriangle 
         self.screen=screen
         self.RowNum=RowNum                                      
         self.ColumnNum=ColumnNum                            #row And Column Number Of This Cell In Grid
@@ -16,16 +15,16 @@ class cell:
         self.aliveNeighbour=0
         self.Color=(random.randint(0,255),random.randint(0,255),random.randint(0,255))
                                                             #setting A Random Color To This Cell
-        pygame.draw.rect(self.screen,(0,0,0),(self.x1,self.y1,self.x2,self.y2))
-        pygame.draw.rect(self.screen,(0,128,128),(self.x1+2,self.y1+2,self.x2-2,self.y2-2))
+        pygame.draw.rect(self.screen,(0,0,0),(self.x1,self.y1,self.cellSize,self.cellSize))
+        pygame.draw.rect(self.screen,(0,128,128),(self.x1+2,self.y1+2,self.cellSize-2,self.cellSize-2))
         super().__init__()
     def update(self):                                       #if Cell Is Alive Then Draw Cell WIth Its Own Color, Else Draw A Cell With Black Color
         if self.isAlive:
-            pygame.draw.rect(self.screen,(0,0,0),(self.x1,self.y1,self.x2,self.y2))
-            pygame.draw.rect(self.screen,self.Color,(self.x1+2,self.y1+2,self.x2-2,self.y2-2))
+            pygame.draw.rect(self.screen,(0,0,0),(self.x1,self.y1,self.cellSize,self.cellSize))
+            pygame.draw.rect(self.screen,self.Color,(self.x1+2,self.y1+2,self.cellSize-2,self.cellSize-2))
         else:
-            pygame.draw.rect(self.screen,(0,0,0),(self.x1,self.y1,self.x2,self.y2))
-            pygame.draw.rect(self.screen,(0,0,0),(self.x1+2,self.y1+2,self.x2-2,self.y2-2))
+            pygame.draw.rect(self.screen,(0,0,0),(self.x1,self.y1,self.cellSize,self.cellSize))
+            pygame.draw.rect(self.screen,(0,0,0),(self.x1+2,self.y1+2,self.cellSize-2,self.cellSize-2))
 
     def countNeighboure(self,listOfCells):                  #count Alive Neighbours Of This Cell
         numberOfNeighBoure=0
@@ -68,7 +67,7 @@ class grid:
         for i in range(0,self.Width//self.cellSize):
             newRow=[]
             for j in range(0,self.Height//self.cellSize):
-                listcell=cell(self.screen,i*cellSize,j*cellSize,(i)+self.cellSize,(j)+self.cellSize,i,j)
+                listcell=cell(self.screen,i*cellSize,j*cellSize,self.cellSize,i,j)
                 newRow.append(listcell)
                 pygame.event.get() 
             self.listOfCells.append(newRow)
