@@ -7,3 +7,6 @@ Python Code for simulating Conway's Game Of Life<h1>
 2. R: Make Random Pattern
 3. Left Click : Make Cell Alive/Dead
   
+Images:
+![GitHub Logo](https://github.com/GuruprasadDalvi/ConwaysGameOfLife/blob/master/imgs/random700Gen.JPG?raw=true)
+Format: ![Alt Text](url)
