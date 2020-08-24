@@ -6,6 +6,10 @@ from objects import *
 height=1000
 width=1000                                          #default height and Width of screen
 pygame.init()
+print('''Controls:\n
+Space : Start/Pause Simulation
+R: Make Random Pattern
+Left Click : Make Cell Alive/Dead''')
 screen=pygame.display.set_mode((height,width))
 cellSize=20                                         #default Cell Size 
 g=grid(cellSize,height,width,screen)                #making Grid with cellSize, Width and Height
